@@ -3,7 +3,7 @@
 }
 
 body{
-    background-color: #e5e5e5;
+    background-color: #f3f3f3;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -19,6 +19,7 @@ header{
     align-items: center;
     font-size: 45px;
     padding: 0 22px 0 22px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
 }
 
 header img{
@@ -48,9 +49,31 @@ footer input{
     border: none;
     font-style: italic;
     font-size: 18px;
+    outline: none;
 }
 
 main{
     margin-top: 96px;
     font-size: 14px;
+    width: 100%;
+    margin-bottom: 85px;
+}
+
+.container{
+    background-color: white;
+    padding: 12px;
+    margin-bottom: 4px;
+}
+
+.hora{
+    color: #AAAAAA;
+    margin-right: 5px;
+}
+
+.usuario, .destinatario{
+    font-weight: 700;
+}
+
+.status{
+    background-color: #dcdcdc;
 }
