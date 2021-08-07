@@ -6,6 +6,7 @@ function entrarUsuario(){
 
    const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants", {name: usuario});
    promise.then(enviaUsuario);
+   promise.catch(erroDeEntrada);
 
 }
 
@@ -14,6 +15,11 @@ function enviaUsuario(resposta){
     setInterval(atualizaMensagens, 3000);
     setInterval(mantemAtivo, 5000);
     
+}
+
+function erroDeEntrada(){
+    alert("esse usuário já está logado, entre com outro nome...")
+    entrarUsuario();
 }
 
 function mantemAtivo(){
@@ -62,6 +68,19 @@ function renderizarMensagens(mensagensServidor){
     }
     ultimaMensagem = document.querySelector(".ultima");
     ultimaMensagem.scrollIntoView();    
-    
+}
+
+function enviarMensagem(){
+    let texto = document.querySelector("footer input");
+    let mensagem = {
+        from: usuario,
+        to: "Todos",
+        text: texto.value,
+        type: "message"
+    }
+    let promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages", mensagem);
+    promise.then(atualizaMensagens);
+    promise.catch(entrarUsuario);
+    texto.value = "";
 }
 
