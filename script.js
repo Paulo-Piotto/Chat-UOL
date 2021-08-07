@@ -1,6 +1,24 @@
 let mensagens = [];
+let usuario;
 
-const idIntervalo = setInterval(atualizaMensagens, 3000);
+function entrarUsuario(){
+   usuario =  prompt("digite seu nome: ");
+
+   const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants", {name: usuario});
+   promise.then(enviaUsuario);
+
+}
+
+function enviaUsuario(resposta){
+    atualizaMensagens();
+    setInterval(atualizaMensagens, 3000);
+    setInterval(mantemAtivo, 5000);
+    
+}
+
+function mantemAtivo(){
+    const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/status", {name: usuario});
+}
 
 function atualizaMensagens(){
     const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages");
