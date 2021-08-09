@@ -2,15 +2,20 @@ let mensagens = [];
 let usuario;
 
 function entrarUsuario(){
-   usuario =  prompt("digite seu nome: ");
-
+   usuario =  document.querySelector(".usuario").value;
    const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants", {name: usuario});
    promise.then(enviaUsuario);
    promise.catch(erroDeEntrada);
+   let carregar = document.querySelector(".nome-loading");
+   carregar.innerHTML = `<img src="assets/loading.gif">`
 
 }
 
 function enviaUsuario(resposta){
+    let telaDeEntrada = document.querySelector(".tela-de-entrada");
+    telaDeEntrada.classList.add("some");
+    let principal = document.querySelector(".conteudo");
+    principal.classList.remove("some");
     atualizaMensagens();
     setInterval(atualizaMensagens, 3000);
     setInterval(mantemAtivo, 5000);
@@ -19,7 +24,7 @@ function enviaUsuario(resposta){
 
 function erroDeEntrada(){
     alert("esse usuário já está logado, entre com outro nome...")
-    entrarUsuario();
+    window.location.reload();
 }
 
 function mantemAtivo(){
@@ -54,7 +59,7 @@ function renderizarMensagens(mensagensServidor){
             
         }
         
-        if(mensagensServidor[i].type === "message" && mensagensServidor[i].to === "Todos"){
+        if(mensagensServidor[i].type === "message"){
             areaDeMensagens.innerHTML += `<div class="container ultima">
                             <p><span class="hora"> (${mensagensServidor[i].time})</span><span class="usuario">${mensagensServidor[i].from}</span> Para <span class="destinatario">${mensagensServidor[i].to}</span>: ${mensagensServidor[i].text}</p>
                             </div>`
@@ -84,3 +89,9 @@ function enviarMensagem(){
     texto.value = "";
 }
 
+function enter(event){
+    let tecla = event.key;
+    if(tecla === "Enter"){
+        enviarMensagem()
+    }
+}

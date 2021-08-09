@@ -13,22 +13,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body onload="entrarUsuario()">
-    <header>
-        <img src="./assets/logo 2.jpg">
-        <ion-icon name="people"></ion-icon>
-    </header>
+<body>
+    <div class="tela-de-entrada">
+        <img src="assets/logo 2.jpg">
+        <div class="nome-loading">
+            <input class="usuario" type="text" placeholder="Digite seu nome">
+            <button onclick="entrarUsuario()">Entrar</button>
+        </div>
+    </div>
 
-    <main>
-    </main>
+    <div class="conteudo some">
+        <header>
+            <img src="./assets/logo 2.jpg">
+            <ion-icon name="people"></ion-icon>
+        </header>
+    
+        <main>
+        </main>
+    
+        <footer>
+            <input type="text" placeholder="Escreva aqui..." onkeydown="enter(event)">
+            <ion-icon name="paper-plane-outline" onclick="enviarMensagem()"></ion-icon>
+        </footer>
+    </div>
+    
 
-
-
-
-    <footer>
-        <input type="text" placeholder="Escreva aqui...">
-        <ion-icon name="paper-plane-outline" onclick="enviarMensagem()"></ion-icon>
-    </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
